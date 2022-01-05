@@ -23,14 +23,14 @@ import { ClientProviderOptions } from '@nestjs/microservices/module/interfaces/c
 
 import { ${serviceNames.join(',')} } from './${getServiceFileNamePrefix()}';
 import { ${resolverNames.join(',')} } from './${getResolverFileNamePrefix()}';
-import { ${createGrpcOptionName()} } from 'src/grpc.options';
+import { ${createGrpcOptionName()}Options } from 'src/grpc.options';
 `
 
 const createModuleName = () => upperFirst(getServiceName()) + 'Module'
 
 const createModule = (serviceNames: string[], resolverNames: string[]) => `
 @Module({
-  imports: [ClientsModule.register([${createGrpcOptionName()} as ClientProviderOptions])],
+  imports: [ClientsModule.register([${createGrpcOptionName()}Options as ClientProviderOptions])],
   providers: [
     ${[serviceNames].concat(resolverNames).join(',')}
   ],
